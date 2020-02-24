@@ -1,0 +1,51 @@
+<div class="container">
+    <form [formGroup]="addProduct" (ngSubmit)="onSubmit();">
+        <h1>{{action}} Book</h1>
+        
+        <fieldset>
+          <label for="Book Title">Title:</label>
+          <input type="text" id="book_title" formControlName="title1" [ngClass]="{'is-invalid':(title1.dirty || title1.touched) && title1.errors}">
+          <span *ngIf="(title1.dirty || title1.touched) && title1.errors">Please enter the title</span>
+          <label for="Category">Category:</label>
+          <input type="text" id="category" formControlName="category" [ngClass]="{'is-invalid':(category.dirty || category.touched) && category.errors}">
+          
+          <label for="Author Name">Author Name:</label>
+          <input type="text" id="authorName" formControlName="author" [ngClass]="{'is-invalid':(author.dirty || author.touched) && author.errors}">
+          
+          <label for="Publisher">Publisher:</label>
+          <input type="text" id="publisher" formControlName="publisher" [ngClass]="{'is-invalid':(publisher.dirty || publisher.touched) && publisher.errors}">
+         
+        </fieldset>
+        <div class="btn-contianer">
+            <button type="submit">{{action}}</button>
+            <button type="button">Cancel</button>
+        </div>
+      </form> 
+
+      <div class="table-users">
+            <div class="tb-hd-cont">
+                <!--<button  class="md-btn" type="button" style="display: inline-block;">Add Book</button>-->
+                <!--<input type="text" class="col-tx-1" name="search" value="">-->
+            </div>
+            <table cellspacing="0">
+               <tr>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Author Name</th>
+                  <th>Publisher</th>
+                  <th>Action</th>
+               </tr>
+         
+               <tr *ngFor="let item of getProd">
+                  <td>{{item.title}}</td>
+                  <td>{{item.category}}</td>
+                  <td>{{item.author}}</td>
+                  <td>{{item.publisher}}</td>
+                  <td>
+                      <button (click)="editProd(item)">Edit</button>&nbsp;&nbsp;|&nbsp;&nbsp;
+                      <button (click)="deleteProd(item)">Delete</button>
+                </td>
+               </tr>
+            </table>
+    </div>
+</div>
